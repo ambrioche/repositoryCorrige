@@ -2,7 +2,7 @@ package gitHub.entity;
 
 public class Fromage {
 	
-	String typeFromage;
-	Int prix;
+	public String typeFromage;
+	public int prix;
 
 }
