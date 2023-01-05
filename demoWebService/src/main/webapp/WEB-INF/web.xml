@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>demoWebService</display-name>
+	<!-- definition de la classe de la servlet -->
+	
+
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/api</param-value>
+		<!-- Des qu'on a l'url "/api/*" ça passe par la servlet resteasy -->
+	</context-param>
+	
+	
+	<servlet>
+		
+		<servlet-name>resteasyServlet</servlet-name> <!-- Ce nom n'a aucune importance -->
+		<servlet-class>
+			<!-- Tapper "HttpServletDispatcher javadoc" sur le web: 1er lien pour 
+				avoir les infos de la classe -->
+			<!-- Le nom complet de la classe se trouve dans cette page -->
+			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+			</servlet-class>
+			
+			<!-- Donne un paramtre d'initialisation à la servlet (dire qu'on va chercher le extends Application -->
+			<init-param>
+				<param-name>javax.ws.rs.Application</param-name>
+				<param-value>demoWebService.WebServiceApplication</param-value>
+				<!-- La servlet resteasy donne le parametre "demoWebService" à la classe Application -->
+			</init-param>
+
+	</servlet>
+	
+		<!-- Definir le mapping (=>url pour aller sur la servlet) de la servket -->
+		<servlet-mapping>
+			<servlet-name>resteasyServlet</servlet-name>
+			<url-pattern>/api/*</url-pattern>
+			<!-- N'importe quelle URL ou y'a /api/ nous envoie sur cette servlet -->
+		</servlet-mapping>
+	
+
+</web-app>
